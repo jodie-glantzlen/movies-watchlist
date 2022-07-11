@@ -18,3 +18,13 @@ export function postMovie(movie) {
   .then(res => res.body)
   .catch(err => console.log(err.message))
 }
+
+export function patchMovieDetails(id, details) {
+  return request.patch(`/api/v1/movies/${id}`)
+  .send(details)
+  .then(res => res.body)
+  .catch(err => console.log(err.message))
+}
+
+// patch: change one little piece of the thing
+// put: change the whole thing

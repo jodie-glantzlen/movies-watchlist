@@ -29,4 +29,20 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(500).json({ msg: err.message }))
 })
 
+// PATCH /api/v1/movies/:id
+
+router.patch('/:id', (req, res) => {
+  const id = req.params.id
+  const detailsToUpdate = req.body
+
+  moviesDb.updateMovie(id, detailsToUpdate)
+  .then(() => {
+    return moviesDb.selectMovieById(id)
+  })
+  .then((updatedMovie) => {
+    res.json(updatedMovie)
+  })
+  .catch((err) => res.status(500).json({ msg: err.message }))
+})
+
 module.exports = router
