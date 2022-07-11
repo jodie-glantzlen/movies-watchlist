@@ -6,8 +6,7 @@ function MovieList() {
   const movies = useSelector((reduxState) => reduxState.movies)
   return (
     <>
-      <h2>My list:</h2>
-      <div className="movie_container">
+      <div className="movie__container">
         {movies.map(movie => <MovieTile key={movie.id} movieData={movie} />)}
       </div>
 
