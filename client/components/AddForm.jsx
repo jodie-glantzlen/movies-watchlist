@@ -8,6 +8,7 @@ function AddForm() {
   
   const [newMovie, setNewMovie] = useState('')
   const [results, setResults] = useState([])
+  const [added, setAdded] = useState([])
 
   const handleTyping = (evt) => {
     setNewMovie(evt.target.value)
@@ -23,7 +24,9 @@ function AddForm() {
   }
 
   const handleAdd = (movie) => {
+    console.log(movie)
     dispatch(addMovie(movie))
+    setAdded([...added, movie.id])
   }
 
   return (
@@ -39,7 +42,9 @@ function AddForm() {
         {results.map(movie =>
         (<li key={movie.id}>
           {movie.title} {movie.description}
-          <button onClick={() => handleAdd(movie)}>Add to Watchlist</button>
+          <button onClick={() => handleAdd(movie)}>
+            {added.includes(movie.id) ? '✅' : 'Add to Watchlist'}
+          </button>
         </li>))}
       </ul>
     </>
