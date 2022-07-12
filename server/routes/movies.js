@@ -45,4 +45,16 @@ router.patch('/:id', (req, res) => {
   .catch((err) => res.status(500).json({ msg: err.message }))
 })
 
+// DEL /api/v1/movies/:id
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  
+  moviesDb.deleteMovie(id)
+  .then(() => {
+    res.json('delete successful!')
+  })
+  .catch((err) => res.status(500).json({ msg: err.message }))
+})
+
 module.exports = router

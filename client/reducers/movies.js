@@ -1,4 +1,9 @@
-import { MODIFY_MOVIE, RECEIVE_MOVIES, SEND_MOVIE } from '../actions/movies'
+import {
+  DEL_MOVIE,
+  MODIFY_MOVIE,
+  RECEIVE_MOVIES,
+  SEND_MOVIE,
+} from '../actions/movies'
 
 function reducer(state = [], action) {
   switch (action.type) {
@@ -14,6 +19,8 @@ function reducer(state = [], action) {
         }
         return movie
       })
+    case DEL_MOVIE:
+      return state.filter((movie) => movie.id !== action.payload)
     default:
       return state
   }

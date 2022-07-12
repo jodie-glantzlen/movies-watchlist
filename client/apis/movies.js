@@ -26,5 +26,10 @@ export function patchMovieDetails(id, details) {
   .catch(err => console.log(err.message))
 }
 
+export function deleteMovie(id) {
+  return request.delete('/api/v1/movies/:id')
+  .then(() => id)
+}
+
 // patch: change one little piece of the thing
 // put: change the whole thing

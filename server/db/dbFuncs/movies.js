@@ -22,9 +22,14 @@ function updateMovie(id, details, db = conn) {
   .update(details) // {watched: true}
 }
 
+function deleteMovie(id, db = conn) {
+  return db('movies').where('id', id).del()
+}
+
 module.exports = {
   selectAllMovies,
   insertMovie,
   selectMovieById,
-  updateMovie
+  updateMovie,
+  deleteMovie
 }

@@ -1,9 +1,10 @@
-import { fetchAllMovies, patchMovieDetails, postMovie } from "../apis/movies"
+import { deleteMovie, fetchAllMovies, patchMovieDetails, postMovie } from "../apis/movies"
 
 // TYPE VARS
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES'
 export const SEND_MOVIE = 'SEND_MOVIE'
 export const MODIFY_MOVIE = 'MODIFY_MOVIE'
+export const DEL_MOVIE = 'DEL_MOVIE'
 
 
 // ACTION CREATORS
@@ -28,6 +29,15 @@ function modifyMovie(movie) {
     payload: movie
   }
 }
+
+function delMovie(movieId) {
+  return {
+    type: 'DEL_MOVIE',
+    payload: movieId
+  }
+}
+
+
 
 
 // THUNKS
@@ -57,6 +67,16 @@ export function setAsWatched(id) {
     patchMovieDetails(id, {watched: true})
     .then((updatedMovieObj) => {
       dispatch(modifyMovie(updatedMovieObj))
+    })
+    .catch(err => console.log(err.message))
+  }
+}
+
+export function removeMovie(movieId) {
+  return (dispatch) => {
+    deleteMovie(movieId)
+    .then(() => {
+      dispatch(delMovie(movieId))
     })
     .catch(err => console.log(err.message))
   }

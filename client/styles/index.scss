@@ -41,6 +41,10 @@ nav {
 }
 
 .movie__tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px;
   padding: 10px;
   border: #050714 1px solid;
@@ -51,6 +55,6 @@ nav {
   }
 
   img {
-    max-width: 100px;
+    max-width: 200px;
   }
 }
